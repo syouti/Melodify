@@ -1,0 +1,44 @@
+<div class="container">
+  <div class="row">
+    <!-- プロフィール情報 -->
+    <div class="col-md-4">
+      <div class="profile-box">
+        <h2><%= @user.email %></h2>
+        <div class="follow-stats mt-3">
+          <span>フォロー: <%= @user.followings.count %></span>
+          <span>フォロワー: <%= @user.followers.count %></span>
+        </div>
+        <% if @user == current_user %>
+          <%= link_to '編集する', edit_user_path(@user), class: 'btn btn-outline-secondary' %>
+        <% else %>
+          <!-- フォローボタン -->
+          <div id="follow_form">
+            <% if current_user.followings.include?(@user) %>
+              <%= button_to "フォロー解除", relationship_path(@user), method: :delete, class: "btn btn-danger" %>
+            <% else %>
+              <%= button_to "フォローする", relationships_path(followed_id: @user.id), class: "btn btn-primary" %>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <!-- 投稿一覧 -->
+    <div class="col-md-8">
+      <h3>投稿一覧</h3>
+      <div class="posts-container">
+        <% @user.posts.each do |post| %>
+          <div class="post-card">
+            <h4><%= link_to post.title, post_path(post) %></h4>
+            <p><%= post.content %></p>
+            <div class="post-meta">
+              <span>投稿日時: <%= post.created_at.strftime('%Y/%m/%d %H:%M') %></span>
+              <span>いいね: <%= post.likes.count %></span>
+              <span>コメント: <%= post.comments.count %></span>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

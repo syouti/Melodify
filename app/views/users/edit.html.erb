@@ -1,0 +1,18 @@
+<h1>プロフィールを編集</h1>
+<%= form_for @user do |f| %>
+  <div>
+    <%= f.label :email %><br>
+    <%= f.email_field :email %>
+  </div>
+  <div>
+    <%= f.label :password %> (変更する場合のみ入力)<br>
+    <%= f.password_field :password %>
+  </div>
+  <div>
+    <%= f.label :password_confirmation %> (変更する場合のみ入力)<br>
+    <%= f.password_field :password_confirmation %>
+  </div>
+  <div>
+    <%= f.submit '更新する' %>
+  </div>
+<% end %>

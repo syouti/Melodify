@@ -1,0 +1,60 @@
+<div class="container">
+ <div class="row">
+   <!-- プロフィール情報 -->
+   <div class="col-md-4">
+     <div class="profile-box">
+       <h2><%= @user.email %></h2>
+       <% if @user == current_user %>
+         <%= link_to '編集する', edit_user_path(@user), class: 'btn btn-outline-secondary' %>
+       <% end %>
+     </div>
+   </div>
+
+   <!-- 投稿一覧 -->
+   <div class="col-md-8">
+     <h3>投稿一覧</h3>
+     <!-- 新規投稿ボタンを追加 -->
+     <% if @user == current_user %>
+       <%= link_to '新規投稿', new_post_path, class: 'btn btn-primary mb-3' %>
+     <% end %>
+
+     <div class="posts-container">
+       <% @user.posts.each do |post| %>
+         <div class="post-card">
+           <h4><%= link_to post.title, post_path(post) %></h4>
+           <p><%= post.content %></p>
+           <div class="post-meta">
+             <span>投稿日時: <%= post.created_at.strftime('%Y/%m/%d %H:%M') %></span>
+           </div>
+         </div>
+       <% end %>
+     </div>
+   </div>
+ </div>
+</div>
+
+<% content_for :styles do %>
+ <style>
+   .profile-box {
+     padding: 20px;
+     border: 1px solid #ddd;
+     border-radius: 8px;
+   }
+
+   .post-card {
+     padding: 15px;
+     margin-bottom: 15px;
+     border: 1px solid #eee;
+     border-radius: 5px;
+   }
+
+   .post-meta {
+     font-size: 0.9em;
+     color: #666;
+   }
+
+   .post-meta span {
+     margin-right: 15px;
+   }
+ </style>
+<% end %>
