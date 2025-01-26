@@ -1,0 +1,28 @@
+<footer class="footer mt-auto py-3 bg-light">
+  <div class="container text-center">
+    <div class="row">
+      <div class="col-12">
+        <p class="mb-2">Melodifyへようこそ</p>
+        <p class="mb-3">音楽を通じて人々をつなぐプラットフォーム</p>
+
+        <div class="mb-3">
+          <h5>主な機能</h5>
+          <ul class="list-inline">
+            <li class="list-inline-item">音楽の共有</li>
+            <li class="list-inline-item">音楽について語り合う</li>
+            <li class="list-inline-item">新しい音楽との出会い</li>
+          </ul>
+        </div>
+
+        <p class="text-muted">&copy; <%= Date.current.year %> Melodify. All rights reserved.</p>
+
+        <nav>
+          <ul class="list-inline">
+            <li class="list-inline-item"><%= link_to '利用規約', '#', class: 'text-muted' %></li>
+            <li class="list-inline-item"><%= link_to 'プライバシーポリシー', '#', class: 'text-muted' %></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</footer>

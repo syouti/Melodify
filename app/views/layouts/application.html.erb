@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja">
   <head>
     <title>Melodify</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -11,26 +11,22 @@
   </head>
 
   <body>
-    <!-- ヘッダー部分 -->
-    <header>
-      <nav>
-        <ul>
-          <% if user_signed_in? %>
-            <li><%= link_to 'マイページ', user_path(current_user) %></li>
-            <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
-          <% else %>
-            <li><%= link_to 'ログイン', new_user_session_path %></li>
-            <li><%= link_to '新規登録', new_user_registration_path %></li>
-          <% end %>
-        </ul>
-      </nav>
-    </header>
+    <%= render 'shared/header' %>
 
     <!-- フラッシュメッセージ -->
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <div class="flash-messages">
+      <% flash.each do |type, message| %>
+        <div class="alert alert-<%= type %>">
+          <%= message %>
+        </div>
+      <% end %>
+    </div>
 
-    <!-- コンテンツ部分 -->
-    <%= yield %>
+    <!-- メインコンテンツ -->
+    <main role="main">
+      <%= yield %>
+    </main>
+
+    <%= render 'shared/footer' %>
   </body>
 </html>

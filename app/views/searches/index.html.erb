@@ -1,0 +1,43 @@
+<div class="container">
+  <h2>検索結果</h2>
+
+  <% if @model == 'user' %>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>プロフィール画像</th>
+          <th>ユーザー名</th>
+          <th>アクション</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @records.each do |user| %>
+          <tr>
+            <td><%= image_tag user.profile_image, size: '50x50' %></td>
+            <td><%= user.name %></td>
+            <td><%= link_to 'プロフィール', user_path(user) %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% elsif @model == 'post' %>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>タイトル</th>
+          <th>投稿者</th>
+          <th>アクション</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @records.each do |post| %>
+          <tr>
+            <td><%= post.title %></td>
+            <td><%= post.user.name %></td>
+            <td><%= link_to '詳細', post_path(post) %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+</div>
